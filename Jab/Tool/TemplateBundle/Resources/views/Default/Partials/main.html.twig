@@ -1,0 +1,13 @@
+{% extends 'JabToolTemplateBundle:Default:base.html.twig' %}
+{% block maincontainer %}
+	<!-- Begin page content -->
+	<div class="maincontent">
+		<div class="container-fluid">
+			<!-- Begin flash messages -->
+			{{ include("JabToolTemplateBundle:Default/Partials:flashbag.html.twig") }}
+			<!-- End flash messages -->
+			{% block body %}{% endblock %}
+		</div>
+	</div>
+	<!-- End page content -->
+{% endblock %}

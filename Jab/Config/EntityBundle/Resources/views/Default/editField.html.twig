@@ -1,0 +1,32 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+{% block title %}JAB CONFIGURATION{% endblock %}
+
+{% block body %}
+	<div class="page-header">
+
+		<a href="{{ path("configuration-entity-details", {'entityName': entityData.entityName}) }}" class="pull-right"><button class="btn btn-default">Back</button></a>
+
+		<button data-ref="save" class="form-button btn btn-success pull-right">Save</button>
+
+		{% if fieldName is not null %}
+			<a href="{{ path("configuration-delete-field", {'entityName': entityData.entityName, 'fieldName': fieldName}) }}" class="pull-right"><button class="btn btn-warning">Delete Field</button></a>
+		{% endif %}
+
+		<h1>Edit Entity Property({{ entityData.className }}/{{ fieldName is not null ? fieldName : "New Field" }}[{{ fieldData.type }}])</h1>
+	</div>
+
+
+	{{ form_start( form, {'attr':{'class': 'form-horizontal', 'role': 'form'} } ) }}
+		{{ form_errors(form) }}
+		{{ form_row(form.fieldName) }}
+		{{ form_row(form.columnName) }}
+		{{ form_row(form.type) }}
+		{% if form.length is defined %} {{ form_row(form.length) }} {% endif %}
+		{% if form.precision is defined %} {{ form_row(form.precision) }} {% endif %}
+		{% if form.scale is defined %} {{ form_row(form.scale) }} {% endif %}
+		{% if form.unique is defined %} {{ form_row(form.unique) }} {% endif %}
+		{% if form.nullable is defined %} {{ form_row(form.nullable) }} {% endif %}
+	{{ form_end(form) }}
+
+	{# <pre>{{ dump(entityData) }}</pre> #}
+{% endblock %}

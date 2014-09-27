@@ -1,0 +1,6 @@
+{# null values pumped through |date filter will show current date #}
+<span data-field-type="{{fieldType}}">
+	{% if field is not null %}
+		{{ field|date('Y-m-d') }}
+	{% endif %}
+</span>

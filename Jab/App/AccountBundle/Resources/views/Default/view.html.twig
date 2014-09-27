@@ -1,0 +1,51 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+{% block title %}Account Details{% endblock %}
+
+
+{% block body %}
+
+<div class="page-header">
+	<a href="{{ jab_abstract_entity_path(entityName, "INDEX") }}" class="pull-right"><button class="btn btn-primary">Back</button></a>
+	<a href="{{ jab_abstract_entity_path(entity, "EDIT") }}" class="pull-right"><button class="btn btn-primary">Edit</button></a>
+	<a href="{{ jab_abstract_entity_path(entity, "DELETE") }}" class="pull-right"><button class="btn btn-warning">Delete</button></a>
+	<h1>Account Details
+		<small>{{ entity.name }}</small>
+	</h1>
+</div>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+	<li class="active"><a href="#tab-main" role="tab" data-toggle="tab">Main</a></li>
+	<li><a href="#tab-info" role="tab" data-toggle="tab">Extra Info</a></li>
+</ul>
+
+<div class="tab-content">
+	<div class="tab-pane active" id="tab-main">
+
+		<div class="col-md-6">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr><th colspan="2">General Company Info</th></tr>
+				</thead>
+				{% for fieldName, fieldLabel in fields %}
+					<tr>
+						<td><label>{{ fieldLabel }}</label></td>
+						<td>{{ jab_abstract_entity_render_field(entity, fieldName) }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+
+	</div>
+
+	<div class="tab-pane" id="tab-info">
+		{% if _tmp_ is defined %}
+			{% for key, val in _tmp_ %}
+				<h3>{{ key }}</h3>{{ dump(val) }}<hr/>
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}
+

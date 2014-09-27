@@ -1,0 +1,14 @@
+{
+    "name": "jab/jab-core",
+    "description": "The JAB core application collection",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-0": { "": "src/", "JabPlatform": "app/" }
+    },
+    "require": {
+        "php": ">=5.4.4",
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+}

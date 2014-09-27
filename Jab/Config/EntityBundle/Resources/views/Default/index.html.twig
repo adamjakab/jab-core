@@ -1,0 +1,54 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+
+
+{% block title %}JAB CONFIGURATION{% endblock %}
+
+
+
+{% block body %}
+	<div class="page-header">
+
+		<a href="{{ path("configuration-platform-recheck") }}" class="pull-right"><button class="btn btn-info">Recheck Schema</button></a>
+
+		{% if ( platformInSync == false ) %}
+			<a href="{{ path("configuration-platform-sync") }}" class="pull-right"><button class="btn btn-warning">Sync Schema</button></a>
+		{% endif %}
+
+		<a href="{{ path("configuration-edit-entity") }}" class="pull-right"><button class="btn btn-default">New Entity</button></a>
+
+
+		<h1>ENTITY CONFIGURATION</h1>
+	</div>
+
+	<table class="table table-bordered table-striped">
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Entity</th>
+			<th>Bundle</th>
+			<th>Type</th>
+			<th title="Mapped Superclass">MSC</th>
+			<th>Table</th>
+			<th>Columns</th>
+			<th>Rows</th>
+			<th style="width:10%;">State</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for entity in entities %}
+				<tr>
+					<td>{{ loop.index }}</td>
+					<td><a href="{{ path("configuration-entity-details", {'entityName': entity.entityName}) }}">{{ entity.className }}</a></td>
+					<td>{{ entity.bundleName }}</td>
+					<td>{{ entity.type }}</td>
+					<td>{{ entity.isMappedSuperclass ? "Y" : "N" }}</td>
+					<td>{{ entity.databaseTableName }}</td>
+					<td>{{ entity.countFields }}</td>
+					<td>{{ entity.getDatabaseTableStatusProperty("Rows") }}</td>
+					<td>{{ entity.inSync ? "IN-SYNC" : "OUT-OF-SYNC" }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

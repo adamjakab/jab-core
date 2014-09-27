@@ -1,0 +1,12 @@
+{# info danger warning success #}
+{% for nType in ['warning', 'success', 'danger', 'info'] %}
+	{% for flashMessage in app.session.flashbag.get(nType) %}
+		<div class="alert alert-{{ nType }}">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span>
+				<span class="sr-only">Close</span>
+			</button>
+			{{ flashMessage }}
+		</div>
+	{% endfor %}
+{% endfor %}

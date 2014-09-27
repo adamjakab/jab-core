@@ -1,0 +1,24 @@
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{{ url("dashboard") }}">JAB</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<!-- MAIN MENU START-->
+			{{ knp_menu_render('mainMenu', {'currentClass': 'active', 'template': 'JabToolTemplateBundle:Menu:bootstrap_menu.html.twig'}) }}
+			<!-- MAIN MENU FINISH-->
+
+			<!-- USER MENU START-->
+			{{ knp_menu_render('userMenu', {'currentClass': 'active', 'template': 'JabToolTemplateBundle:Menu:bootstrap_menu.html.twig'}) }}
+			<!-- USER MENU FINISH-->
+		</div>
+	</div>
+</div>
+{% endif %}

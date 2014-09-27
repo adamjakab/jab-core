@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}Welcome to Jab!{% endblock %}</title>
+	{{ include("JabToolTemplateBundle:Default/Partials:head-assets.html.twig") }}
+</head>
+<body>
+	{{ include("JabToolTemplateBundle:Default/Partials:navbar.html.twig") }}
+
+	{% block maincontainer %}{% endblock %}
+
+	{{ include("JabToolTemplateBundle:Default/Partials:footer.html.twig") }}
+
+	{{ include("JabToolTemplateBundle:Default/Partials:requirejs.html.twig") }}
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+{% block title %}Data Dumper{% endblock %}
+{% block body %}
+	<div class="page-header">
+		<h1>Data Dumper</h1>
+	</div>
+	<div>
+		{% for key, val in data %}
+			<h3>{{ key }}</h3>{{ dump(val) }}<hr/>
+		{% endfor %}
+	</div>
+{% endblock %}

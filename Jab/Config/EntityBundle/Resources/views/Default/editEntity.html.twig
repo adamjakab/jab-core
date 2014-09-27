@@ -1,0 +1,39 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+{% block title %}JAB CONFIGURATION - EDIT ENTITY{% endblock %}
+
+{% block body %}
+	<div class="page-header">
+
+		{% if entityName is not null %}
+			<a href="{{ path("configuration-entity-details", {'entityName': entityData.entityName}) }}" class="pull-right"><button class="btn btn-default">Back</button></a>
+		{% else %}
+			<a href="{{ path("configuration-entity") }}" class="pull-right"><button class="btn btn-primary">Cancel</button></a>
+		{% endif %}
+		<button data-ref="save" class="form-button btn btn-success pull-right">Save</button>
+
+		<h1>
+			{% if entityName is not null %}
+				Edit Entity({{ entityName}})
+			{% else %}
+				New Entity
+			{% endif %}
+		</h1>
+	</div>
+
+
+	{{ form_start( form, {'attr':{'class': 'form-horizontal', 'role': 'form'} } ) }}
+	{{ form_errors(form) }}
+	{{ form_row(form.className) }}
+	{{ form_row(form.bundleName) }}
+	{{ form_row(form.extendedClass) }}
+	{{ form_row(form.database_table_name) }}
+	{{ form_row(form.bundleName) }}
+	{{ form_end(form) }}
+
+	{% if entityName is null %}
+		<pre>{{ dump(entityData) }}</pre>
+	{% endif %}
+
+{% endblock %}
+
+

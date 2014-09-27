@@ -1,0 +1,66 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+{% block title %}Accounts{% endblock %}
+
+
+{% block body %}
+
+	<div class="page-header">
+		<a href="{{ jab_abstract_entity_path(entityName, "NEW") }}" class="pull-right"><button class="btn btn-primary">NEW</button></a>
+		<h1>Accounts
+			<small>List of accounts</small>
+		</h1>
+	</div>
+
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="active"><a href="#tab-main" role="tab" data-toggle="tab">Main</a></li>
+		<li><a href="#tab-info" role="tab" data-toggle="tab">Extra Info</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab-main">
+			{% if entities is defined %}
+				<table class="table table-bordered table-striped table-condensed table-hover">
+					<thead>
+					<tr>
+						{% for fieldName, fieldLabel in fields %}
+							<th{% if entities.isSorted(fieldName) %} class="sorted"{% endif %}>
+								{{ knp_pagination_sortable(entities, fieldLabel, fieldName) }}
+							</th>
+						{% endfor %}
+					</tr>
+					</thead>
+					<tbody>
+					{% for abstractEntity in entities %}
+						<tr>
+							{% for fieldName, fieldLabel in fields %}
+								<td>
+									{% if linkViewFieldName == fieldName %}
+										<a href="{{ jab_abstract_entity_path(abstractEntity, "VIEW") }}">
+									{% endif %}
+									{{ jab_abstract_entity_render_field(abstractEntity, fieldName) }}
+									{% if linkViewFieldName == fieldName %}
+										</a>
+									{% endif %}
+								</td>
+							{% endfor %}
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+				{{ knp_pagination_render(entities) }}
+				<small>Records: {{ entities.getTotalItemCount }}/{{ entityTotalRecords }}</small>
+			{% endif %}
+		</div>
+
+		<div class="tab-pane" id="tab-info">
+			{% if _tmp_ is defined %}
+				{% for key, val in _tmp_ %}
+					<h3>{{ key }}</h3>{{ dump(val) }}<hr/>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}
+

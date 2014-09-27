@@ -1,0 +1,26 @@
+{#
+	Minified resources will be in "assets-built" dir
+#}
+{% set jsAssetsSourceDir = "/assets/js" %}
+{% set jsAssetsBuiltDir = "/assets-built/js" %}
+{% set jsAssetsDir = jsAssetsSourceDir %}
+
+{#
+	RequireJsModuleFinderExtension - will return name of module for current route app/[current route name]
+	or if not found fallback "_default" module
+#}
+{% set moduleToRequire = get_module_for_route(jsAssetsDir) %}
+
+
+<!-- REQUIREJS IMPLEMENTATION (START) -->
+<script src="{{ asset("assets/vendor/requirejs/require.js") }}" language="JavaScript" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+	requirejs.config({ baseUrl: '{{ jsAssetsDir }}' });
+	{# All the rest of requirejs config is inside the jab main module #}
+	require(["jab"], function(/*jab*/) {
+		{% if moduleToRequire is not empty %}
+		require(['{{ moduleToRequire }}']);
+		{% endif %}
+	});
+</script>
+<!-- REQUIREJS IMPLEMENTATION (END) -->

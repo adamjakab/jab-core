@@ -1,0 +1,58 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+{% block title %}BACKGROUND JOBS{% endblock %}
+
+{% block body %}
+
+	<div class="page-header">
+		<h1>Background Jobs Overview</h1>
+	</div>
+
+	<table class="table table-bordered table-striped">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Command</th>
+			<th>State</th>
+			<th>Created At</th>
+			<th>Runtime</th>
+			<th>Queue</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		    {% if jobsWithError|length %}
+				{% for job in jobsWithError %}
+					<tr>
+						<td><a href="{{ path("jms_jobs_details", {"id": job.id}) }}">{{ job.id }}</a></td>
+						<td><a href="{{ path("jms_jobs_details", {"id": job.id}) }}">{{ macros.command(job) }}</a></td>
+						<td>{{ macros.state(job) }}</td>
+						<td>{{ macros.ago(job.createdAt) }}</td>
+						<td>{{ macros.runtime(job) }}</td>
+						<td>{{ macros.queue(job) }}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td style="height:4px; background-color: #ccc;" colspan="6"></td>
+				</tr>
+			{% endif %}
+
+		{% for job in jobs %}
+			<tr>
+				<td><a href="{{ path("jms_jobs_details", {"id": job.id}) }}">{{ job.id }}</a></td>
+				<td><a href="{{ path("jms_jobs_details", {"id": job.id}) }}">{{ macros.command(job) }}</a></td>
+				<td>{{ macros.state(job) }}</td>
+				<td>{{ macros.ago(job.createdAt) }}</td>
+				<td>{{ macros.runtime(job) }}</td>
+				<td>{{ macros.queue(job) }}</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="6">There are no jobs.</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
+
+
+{% endblock %}

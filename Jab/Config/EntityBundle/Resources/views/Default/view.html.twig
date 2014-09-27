@@ -1,0 +1,130 @@
+{% extends 'JabToolTemplateBundle:Default/Partials:main.html.twig' %}
+
+
+{% block title %}JAB CONFIGURATION{% endblock %}
+
+
+
+{% block body %}
+	<div class="page-header">
+
+		<a href="{{ path("configuration-entity") }}" class="pull-right"><button class="btn btn-primary">Back</button></a>
+
+		{% if entityData.editable %}
+			<a href="{{ path("configuration-edit-entity", {'entityName': entityData.entityName}) }}" class="pull-right"><button class="btn btn-info">Edit Entity</button></a>
+			<a href="{{ path("configuration-edit-field", {'entityName': entityData.entityName}) }}" class="pull-right"><button class="btn btn-default">New Field</button></a>
+		{% endif %}
+
+
+
+		<h1>ENTITY DETAILS({{ entityData.className }})</h1>
+	</div>
+
+
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="active"><a href="#tab-fields" role="tab" data-toggle="tab">Fields</a></li>
+		<li><a href="#tab-associations" role="tab" data-toggle="tab">Relationships</a></li>
+		<li><a href="#tab-extendedinfo" role="tab" data-toggle="tab">Extended Info</a></li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab-fields">
+			<div class="row-fluid">
+				<table class="table table-bordered table-striped">
+					<thead>
+					<tr>
+						<th>#</th>
+						<th>Field Name</th>
+						<th>Column Name</th>
+						<th>Type</th>
+						<th>Length</th>
+						<th>Unique</th>
+						<th>Nullable</th>
+						<th>Declared In</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for field in entityData.fields %}
+						<tr>
+							<td>{{ loop.index }}</td>
+							<td>
+								{% if entityData.editable and field.editable %}
+									<a href="{{ path("configuration-edit-field", {'entityName': entityData.entityName, 'fieldName': field.fieldName}) }}">{{ field.fieldName }}</a>
+								{% else %}
+									{{ field.fieldName }}
+								{% endif %}
+							</td>
+							<td>{{ field.columnName }}</td>
+							<td>{{ field.type }}</td>
+							<td>{{ field.length }}{% if field.precision != 0 or field.scale != 0 %}({{ field.precision }}, {{ field.scale }}){% endif %}</td>
+							<td>{{ field.unique ? "Yes" : "No" }}</td>
+							<td>{{ field.nullable ? "Yes" : "No" }}</td>
+							<td><span title="{{ field.declaringClass }}">{{ field.declaringClassName }}({{ field.access }})</span></td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="tab-pane" id="tab-associations">
+			coming soon...
+		</div>
+		<div class="tab-pane" id="tab-extendedinfo">
+
+			<div class="row-fluid">
+				<div class="col-md-6">
+					<label>Database Table Name</label>
+					<code>{{ entityData.databaseTableName }}</code>
+					<br />
+					<label>Number of fields</label>
+					<code>{{ entityData.countFields }}</code>
+					<br />
+					<label>Identifier fields</label>
+					<code>{{ entityData.idFields|join(", ") }}</code>
+					<br />
+					<label>Inheritance Type</label>
+					<code>{{ entityData.inheritanceType }}</code>
+					<br />
+					<label>Generator Type</label>
+					<code>{{ entityData.generatorType }}</code>
+					<br />
+					<label>Type</label>
+					<code>{{ entityData.type }}</code>
+					<br />
+					<label>State</label>
+					<code>{{ entityData.inSync ? "IN-SYNC" : "OUT-OF-SYNC" }}</code>
+					<br />
+
+				</div>
+				<div class="col-md-6">
+					<label>Entity Class Name</label>
+					<code>{{ entityData.className }}</code>
+					<br />
+					<label>Full Name</label>
+					<code>{{ entityData.entityName }}</code>
+					<br />
+					<label>Extended Class</label>
+					<code>{{ entityData.extendedClass }}</code>
+					<br />
+					<label>Repository</label>
+					<code>{{ entityData.customRepositoryClassName }}</code>
+					<br />
+					<label>Bundle Name</label>
+					<code>{{ entityData.bundleName }}</code>
+					<br />
+					<label>Full Bundle Name</label>
+					<code>{{ entityData.bundleNamespace }}</code>
+					<br />
+					<label>Bundle Path</label>
+					<code>{{ entityData.bundleDir }}</code>
+				</div>
+			</div>
+
+			{{ dump(entityData) }}
+
+		</div>
+	</div>
+
+{% endblock %}
