@@ -21,7 +21,6 @@
         "friendsofsymfony/user-bundle": "1.3.5",
         "genemu/form-bundle": "2.2.2",
         "jms/di-extra-bundle": "1.4.0",
-        "jms/job-queue-bundle": "1.1.0",
         "jms/serializer-bundle": "0.13.0",
         "knplabs/knp-gaufrette-bundle": "0.1.7",
         "knplabs/knp-menu-bundle": "2.0.0-alpha2",
