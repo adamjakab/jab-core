@@ -1,0 +1,3 @@
+# .gitignore
+#vendor dir is maintained by bower in this folder
+Jab/Tool/TemplateBundle/Resources/public/vendor/
