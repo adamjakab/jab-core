@@ -1,7 +1,7 @@
 {#
 	Minified resources will be in "assets-built" dir
 #}
-{% set jsAssetsSourceDir = "/assets/js" %}
+{% set jsAssetsSourceDir = "/bundles/jabtooltemplate/js" %}
 {% set jsAssetsBuiltDir = "/assets-built/js" %}
 {% set jsAssetsDir = jsAssetsSourceDir %}
 
@@ -13,7 +13,7 @@
 
 
 <!-- REQUIREJS IMPLEMENTATION (START) -->
-<script src="{{ asset("assets/vendor/requirejs/require.js") }}" language="JavaScript" type="text/javascript"></script>
+<script src="{{ asset("bundles/jabtooltemplate/vendor/requirejs/require.js") }}" language="JavaScript" type="text/javascript"></script>
 <script language="JavaScript" type="text/javascript">
 	requirejs.config({ baseUrl: '{{ jsAssetsDir }}' });
 	{# All the rest of requirejs config is inside the jab main module #}
