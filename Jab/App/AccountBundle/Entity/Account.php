@@ -45,7 +45,7 @@ class Account extends \Jab\Config\EntityBundle\Entity\Presets\JabEntityTimestamp
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Adi\TestBundle\Entity\Address", mappedBy="account")
+     * @ORM\OneToMany(targetEntity="Jab\Tool\TestBundle\Entity\Address", mappedBy="account")
      */
     private $addresses;
 
@@ -113,10 +113,10 @@ class Account extends \Jab\Config\EntityBundle\Entity\Presets\JabEntityTimestamp
     /**
      * Add addresses - X
      *
-     * @param \Adi\TestBundle\Entity\Address $addresses
+     * @param \Jab\Tool\TestBundle\Entity\Address $addresses
      * @return Account
      */
-    public function addAddress(\Adi\TestBundle\Entity\Address $addresses) {
+    public function addAddress(\Jab\Tool\TestBundle\Entity\Address $addresses) {
         $this->addresses[] = $addresses;
         //we can do something funky
         return $this;
@@ -125,9 +125,9 @@ class Account extends \Jab\Config\EntityBundle\Entity\Presets\JabEntityTimestamp
     /**
      * Remove addresses
      *
-     * @param \Adi\TestBundle\Entity\Address $addresses
+     * @param \Jab\Tool\TestBundle\Entity\Address $addresses
      */
-    public function removeAddress(\Adi\TestBundle\Entity\Address $addresses) {
+    public function removeAddress(\Jab\Tool\TestBundle\Entity\Address $addresses) {
         $this->addresses->removeElement($addresses);
     }
 
