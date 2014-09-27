@@ -24,7 +24,7 @@ class DynamicRoutesLoader implements LoaderInterface {//extends Loader
 	private $abstractEntityControllerName = 'JabPlatformBundle:AbstractEntity';
 
 	public function __construct() {
-		/**/
+		/*x*/
 	}
 
 	/**
