@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-0": { "": "src/", "JabPlatform": "app/" }
+        "psr-0": { "Jab": "" }
     },
     "require": {
         "php": ">=5.4.4"
