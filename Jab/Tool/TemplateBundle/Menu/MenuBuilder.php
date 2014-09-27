@@ -80,10 +80,10 @@ class MenuBuilder {
 
 		/* TESTS */
 		$test = $this->addMenuItem($menu, 'Tests', null, [], 'fa-flask')->setAttribute('dropdown', true);
-		//$this->addMenuItem($test, "Test(Abstractor)", 'test-abstractor', [], 'fa-bullseye');
-		//$this->addMenuItem($test, "Test(Add Bubucs)", 'test-abstractor-register', [], 'fa-bullseye');
+		$this->addMenuItem($test, "Test(Abstractor)", 'test-abstractor', [], 'fa-bullseye');
+		$this->addMenuItem($test, "Test(Add Bubucs)", 'test-abstractor-register', [], 'fa-bullseye');
 		//
-		//$this->addMenuItem($test, "Test(Session)", 'test-session', [], 'fa-bullseye', true);
+		$this->addMenuItem($test, "Test(Session)", 'test-session', [], 'fa-bullseye', true);
 
 
 		/* ABSTRACT */
