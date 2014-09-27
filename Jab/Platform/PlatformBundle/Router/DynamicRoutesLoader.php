@@ -23,6 +23,10 @@ class DynamicRoutesLoader implements LoaderInterface {//extends Loader
 
 	private $abstractEntityControllerName = 'JabPlatformBundle:AbstractEntity';
 
+	public function __construct() {
+		/**/
+	}
+
 	/**
 	 * Loads a resource.
 	 *
@@ -39,9 +43,8 @@ class DynamicRoutesLoader implements LoaderInterface {//extends Loader
 		$routes = new RouteCollection();
 
 		//todo: get list of managable entities
-		$routes = $this->addDynamicRoutesForEntity($routes, 'Adi\TestBundle\Entity\Bubucs');
-		//$routes = $this->addDynamicRoutesForEntity($routes, 'Adi\TestBundle\Entity\Account');
-		$routes = $this->addDynamicRoutesForEntity($routes, 'Adi\TestBundle\Entity\Address');
+		//$routes = $this->addDynamicRoutesForEntity($routes, 'Adi\TestBundle\Entity\Bubucs');
+		//$routes = $this->addDynamicRoutesForEntity($routes, 'Adi\TestBundle\Entity\Address');
 
 		$this->loaded = true;
 		return $routes;
